@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Healthcare - Test</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Quick fix styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background: white;
+        }
+        
+        .test-content {
+            padding: 100px 20px 50px;
+            text-align: center;
+            background: linear-gradient(135deg, #2c5aa0, #3498db);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .test-content h1 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+        }
+        
+        .test-content p {
+            font-size: 1.2rem;
+            max-width: 600px;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-content">
+        <h1>Elite Healthcare</h1>
+        <p>This is a test page to check if the content is visible. If you can see this, the basic HTML and CSS are working.</p>
+        <p>If this shows up, we can then investigate the main page issues.</p>
+    </div>
+    
+    <script>
+        console.log('Test page loaded successfully');
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM content loaded on test page');
+        });
+    </script>
+</body>
+</html>
