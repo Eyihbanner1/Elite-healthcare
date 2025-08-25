@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
         initSmoothScrolling();
         initHeaderScroll();
         initImageErrorHandling();
+        initAboutUsTabs();
         // Temporarily disable loading animation to test
         // initLoadingAnimation();
         console.log('All functions initialized successfully');
@@ -614,6 +615,150 @@ function initImageErrorHandling() {
             preloadImg.src = img.src;
         }
     });
+}
+
+// About Us Tab Navigation Functionality
+function initAboutUsTabs() {
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.about-tab-content');
+    
+    // Check if elements exist
+    if (!tabButtons.length || !tabContents.length) {
+        console.warn('About Us tab elements not found');
+        return;
+    }
+    
+    // Function to show specific tab
+    function showTab(tabName) {
+        // Remove active class from all tabs and content
+        tabButtons.forEach(btn => btn.classList.remove('active'));
+        tabContents.forEach(content => content.classList.remove('active'));
+        
+        // Add active class to clicked tab and corresponding content
+        const activeTab = document.querySelector(`[data-tab="${tabName}"]`);
+        const activeContent = document.querySelector(`.about-tab-content[data-tab="${tabName}"]`);
+        
+        if (activeTab && activeContent) {
+            activeTab.classList.add('active');
+            activeContent.classList.add('active');
+        }
+        
+        // Smooth scroll to top of about section on tab change
+        const aboutSection = document.querySelector('.about-us-section');
+        if (aboutSection) {
+            aboutSection.scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'start' 
+            });
+        }
+    }
+    
+    // Add click event listeners to tab buttons
+    tabButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            const tabName = this.getAttribute('data-tab');
+            if (tabName) {
+                showTab(tabName);
+            }
+        });
+    });
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', function(e) {
+        // Only handle keyboard navigation when about section is in view
+        const aboutSection = document.querySelector('.about-us-section');
+        if (!aboutSection) return;
+        
+        const rect = aboutSection.getBoundingClientRect();
+        const isInView = rect.top <= window.innerHeight && rect.bottom >= 0;
+        
+        if (!isInView) return;
+        
+        const activeTab = document.querySelector('.tab-btn.active');
+        if (!activeTab) return;
+        
+        const tabs = Array.from(tabButtons);
+        const currentIndex = tabs.indexOf(activeTab);
+        
+        if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+            e.preventDefault();
+            const prevIndex = currentIndex > 0 ? currentIndex - 1 : tabs.length - 1;
+            const prevTab = tabs[prevIndex];
+            if (prevTab) {
+                const tabName = prevTab.getAttribute('data-tab');
+                showTab(tabName);
+            }
+        } else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+            e.preventDefault();
+            const nextIndex = currentIndex < tabs.length - 1 ? currentIndex + 1 : 0;
+            const nextTab = tabs[nextIndex];
+            if (nextTab) {
+                const tabName = nextTab.getAttribute('data-tab');
+                showTab(tabName);
+            }
+        }
+    });
+    
+    // Auto-tab cycling (optional - can be disabled)
+    let autoTabInterval;
+    const AUTO_TAB_DELAY = 10000; // 10 seconds
+    const AUTO_TAB_ENABLED = false; // Set to true to enable auto-cycling
+    
+    function startAutoTabCycling() {
+        if (!AUTO_TAB_ENABLED) return;
+        
+        autoTabInterval = setInterval(() => {
+            const activeTab = document.querySelector('.tab-btn.active');
+            if (!activeTab) return;
+            
+            const tabs = Array.from(tabButtons);
+            const currentIndex = tabs.indexOf(activeTab);
+            const nextIndex = currentIndex < tabs.length - 1 ? currentIndex + 1 : 0;
+            const nextTab = tabs[nextIndex];
+            
+            if (nextTab) {
+                const tabName = nextTab.getAttribute('data-tab');
+                showTab(tabName);
+            }
+        }, AUTO_TAB_DELAY);
+    }
+    
+    function stopAutoTabCycling() {
+        if (autoTabInterval) {
+            clearInterval(autoTabInterval);
+        }
+    }
+    
+    // Start auto-cycling if enabled
+    if (AUTO_TAB_ENABLED) {
+        startAutoTabCycling();
+        
+        // Pause auto-cycling on hover
+        const aboutSection = document.querySelector('.about-us-section');
+        if (aboutSection) {
+            aboutSection.addEventListener('mouseenter', stopAutoTabCycling);
+            aboutSection.addEventListener('mouseleave', startAutoTabCycling);
+        }
+        
+        // Stop auto-cycling when user interacts
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                stopAutoTabCycling();
+                // Restart after a delay
+                setTimeout(startAutoTabCycling, AUTO_TAB_DELAY);
+            });
+        });
+    }
+    
+    // Initialize first tab as active (should already be set in HTML)
+    const firstTab = tabButtons[0];
+    if (firstTab && !document.querySelector('.tab-btn.active')) {
+        const tabName = firstTab.getAttribute('data-tab');
+        showTab(tabName);
+    }
+    
+    console.log('About Us tab navigation initialized successfully');
 }
 
 // Initialize image error handling
