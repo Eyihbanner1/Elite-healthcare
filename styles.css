@@ -806,9 +806,9 @@ body {
     margin-bottom: 60px;
     background: white;
     border-radius: 60px;
-    padding: 8px;
+    padding: 12px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    max-width: 900px;
+    max-width: 1100px;
     margin-left: auto;
     margin-right: auto;
     overflow-x: auto;
@@ -817,23 +817,24 @@ body {
 .tab-btn {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 16px 24px;
+    gap: 16px;
+    padding: 22px 32px;
     background: transparent;
     border: none;
     border-radius: 50px;
     color: var(--text-secondary);
-    font-weight: 500;
+    font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
     white-space: nowrap;
     position: relative;
-    font-size: 0.95rem;
+    font-size: 1.1rem;
     min-width: max-content;
+    letter-spacing: 0.5px;
 }
 
 .tab-btn i {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     transition: all 0.3s ease;
 }
 
@@ -942,11 +943,31 @@ body {
     background: white;
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.highlight-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
 }
 
 .highlight-item:hover {
-    transform: translateY(-5px);
+    transform: translateY(-10px) translateX(8px) scale(1.02);
+    box-shadow: 0 20px 60px rgba(44, 90, 160, 0.25);
+}
+
+.highlight-item:hover::before {
+    opacity: 0.95;
 }
 
 .highlight-item i {
@@ -960,6 +981,31 @@ body {
     justify-content: center;
     border-radius: 12px;
     flex-shrink: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 2;
+}
+
+/* Bounce animation keyframes for highlight items */
+@keyframes bounceHighlight {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+.highlight-item:hover i {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    transform: scale(1.1);
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    animation: bounceHighlight 1s infinite;
 }
 
 .highlight-item h5 {
@@ -967,12 +1013,37 @@ body {
     font-weight: 600;
     color: var(--text-primary);
     margin-bottom: 4px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 2;
 }
 
 .highlight-item p {
     font-size: 0.9rem;
     color: var(--text-secondary);
     margin: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 2;
+}
+
+.highlight-item:hover h5 {
+    color: white;
+    transform: translateY(-2px);
+}
+
+.highlight-item:hover p {
+    color: rgba(255, 255, 255, 0.9);
+    transform: translateY(-1px);
+}
+
+/* Alternating directional movement for highlight items */
+.highlight-item:nth-child(odd):hover {
+    transform: translateY(-10px) translateX(12px) scale(1.02);
+}
+
+.highlight-item:nth-child(even):hover {
+    transform: translateY(-10px) translateX(-12px) scale(1.02);
 }
 
 .about-image {
@@ -1613,6 +1684,276 @@ body {
     background: white;
 }
 
+/* New About Us Tab Sections Styles */
+.our-people-section,
+.governance-section,
+.training-section {
+    padding: 40px 0;
+}
+
+.section-title,
+.governance-title,
+.training-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.section-intro,
+.governance-intro,
+.training-intro {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 50px;
+    line-height: 1.7;
+}
+
+.people-grid,
+.governance-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.people-card,
+.governance-card {
+    background: var(--bg-light);
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(44, 90, 160, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.people-card::before,
+.governance-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+}
+
+.people-card:hover,
+.governance-card:hover {
+    transform: translateY(-10px) translateX(-8px) scale(1.02);
+    box-shadow: 0 20px 60px rgba(44, 90, 160, 0.25);
+    border-color: var(--primary-color);
+}
+
+.people-card:hover::before,
+.governance-card:hover::before {
+    opacity: 0.95;
+}
+
+.people-icon,
+.governance-icon {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 2;
+}
+
+.people-card:hover .people-icon,
+.governance-card:hover .governance-icon {
+    color: white;
+    transform: scale(1.1);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    animation: bounceHighlight 1s infinite;
+}
+
+.people-card h4,
+.governance-card h4 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 15px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 2;
+}
+
+.people-card:hover h4,
+.governance-card:hover h4 {
+    color: white;
+    transform: translateY(-3px);
+}
+
+.people-card p,
+.governance-card p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 2;
+}
+
+.people-card:hover p,
+.governance-card:hover p {
+    color: rgba(255, 255, 255, 0.9);
+    transform: translateY(-2px);
+}
+
+.people-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.people-stats .stat-item {
+    text-align: center;
+    padding: 30px;
+    background: var(--bg-light);
+    border-radius: 15px;
+    border: 1px solid rgba(44, 90, 160, 0.1);
+}
+
+.people-stats .stat-number {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.people-stats .stat-label {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+/* Training Section Specific Styles */
+.training-pathway {
+    display: grid;
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.training-step {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 30px;
+    background: var(--bg-light);
+    border-radius: 15px;
+    border-left: 5px solid var(--primary-color);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.training-step::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+}
+
+.training-step:hover {
+    transform: translateY(-10px) translateX(8px) scale(1.02);
+    box-shadow: 0 20px 60px rgba(44, 90, 160, 0.25);
+}
+
+.training-step:hover::before {
+    opacity: 0.95;
+}
+
+.step-number {
+    width: 60px;
+    height: 60px;
+    background: var(--primary-color);
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 2;
+}
+
+.training-step:hover .step-number {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+    animation: bounceHighlight 1s infinite;
+}
+
+.step-content h4 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 2;
+}
+
+.training-step:hover .step-content h4 {
+    color: white;
+    transform: translateY(-3px);
+}
+
+.step-content p {
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.6;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 2;
+}
+
+.training-step:hover .step-content p {
+    color: rgba(255, 255, 255, 0.9);
+    transform: translateY(-2px);
+}
+
+/* Staggered directional movement for individual training steps */
+.training-step:nth-child(1):hover {
+    transform: translateY(-10px) translateX(12px) scale(1.02);
+}
+
+.training-step:nth-child(2):hover {
+    transform: translateY(-10px) translateX(-12px) scale(1.02);
+}
+
+.training-step:nth-child(3):hover {
+    transform: translateY(-10px) translateX(12px) scale(1.02);
+}
+
+.training-step:nth-child(4):hover {
+    transform: translateY(-10px) translateX(-12px) scale(1.02);
+}
+
+.training-highlights {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
 /* Why Choose Elite Healthcare Section */
 .why-choose-section {
     padding: 5rem 0;
@@ -1695,7 +2036,7 @@ body {
     content: '';
     position: absolute;
     top: 0;
-    left: -100%;
+    left: 0;
     width: 100%;
     height: 100%;
     background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
@@ -1704,9 +2045,62 @@ body {
     z-index: 1;
 }
 
+/* Default hover state */
 .why-choose-card:hover::before {
-    left: 0;
     opacity: 0.95;
+}
+
+/* Directional hover from left */
+.why-choose-card.hover-left::before {
+    left: -100%;
+    top: 0;
+    opacity: 0.95;
+    animation: slideInFromLeft 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Directional hover from right */
+.why-choose-card.hover-right::before {
+    left: 100%;
+    top: 0;
+    opacity: 0.95;
+    animation: slideInFromRight 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Directional hover from top */
+.why-choose-card.hover-top::before {
+    left: 0;
+    top: -100%;
+    opacity: 0.95;
+    animation: slideInFromTop 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Directional hover from bottom */
+.why-choose-card.hover-bottom::before {
+    left: 0;
+    top: 100%;
+    opacity: 0.95;
+    animation: slideInFromBottom 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Animation keyframes */
+@keyframes slideInFromLeft {
+    from { left: -100%; }
+    to { left: 0; }
+}
+
+@keyframes slideInFromRight {
+    from { left: 100%; }
+    to { left: 0; }
+}
+
+@keyframes slideInFromTop {
+    from { top: -100%; }
+    to { top: 0; }
+}
+
+@keyframes slideInFromBottom {
+    from { top: 100%; }
+    to { top: 0; }
 }
 
 .why-choose-card:hover {

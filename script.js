@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
         initHeaderScroll();
         initImageErrorHandling();
         initAboutUsTabs();
+        initDirectionalHover();
         // Temporarily disable loading animation to test
         // initLoadingAnimation();
         console.log('All functions initialized successfully');
@@ -759,6 +760,56 @@ function initAboutUsTabs() {
     }
     
     console.log('About Us tab navigation initialized successfully');
+}
+
+// Directional Hover Effect for Feature Cards
+function initDirectionalHover() {
+    const cards = document.querySelectorAll('.why-choose-card');
+    
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', function(e) {
+            const direction = getHoverDirection(e, this);
+            
+            // Remove all direction classes
+            this.classList.remove('hover-left', 'hover-right', 'hover-top', 'hover-bottom');
+            
+            // Add the appropriate direction class
+            this.classList.add(`hover-${direction}`);
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            // Remove all direction classes on leave
+            this.classList.remove('hover-left', 'hover-right', 'hover-top', 'hover-bottom');
+        });
+    });
+}
+
+// Function to calculate hover direction
+function getHoverDirection(e, element) {
+    const rect = element.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const width = rect.width;
+    const height = rect.height;
+    
+    // Calculate distances from each edge
+    const distanceFromLeft = x;
+    const distanceFromRight = width - x;
+    const distanceFromTop = y;
+    const distanceFromBottom = height - y;
+    
+    // Find the minimum distance to determine entry direction
+    const minDistance = Math.min(
+        distanceFromLeft,
+        distanceFromRight,
+        distanceFromTop,
+        distanceFromBottom
+    );
+    
+    if (minDistance === distanceFromLeft) return 'left';
+    if (minDistance === distanceFromRight) return 'right';
+    if (minDistance === distanceFromTop) return 'top';
+    return 'bottom';
 }
 
 // Initialize image error handling
