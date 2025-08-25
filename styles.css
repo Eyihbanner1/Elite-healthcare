@@ -26,15 +26,104 @@ body {
     padding: 0 20px;
 }
 
-/* Header and Navigation */
-.header {
+/* Top Header */
+.top-header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
+    background: linear-gradient(135deg, #2c5aa0 0%, #3498db 100%);
+    color: white;
+    padding: 10px 0; /* Increased padding for better spacing */
+    font-size: 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 1001; /* Higher than main header */
+    height: 46px; /* Fixed height for consistent positioning */
+}
+
+.top-header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.top-header-left {
+    display: flex;
+    align-items: center;
+}
+
+.contact-info {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    white-space: nowrap;
+}
+
+.contact-item i {
+    font-size: 12px;
+    width: 14px;
+    text-align: center;
+    opacity: 0.9;
+}
+
+.contact-item a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-item a:hover {
+    color: #f39c12;
+}
+
+.top-header-right {
+    display: flex;
+    align-items: center;
+}
+
+.social-links {
+    display: flex;
+    gap: 12px;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: white;
+    text-decoration: none;
+    font-size: 12px;
+    transition: all 0.3s ease;
+}
+
+.social-link:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    color: white;
+}
+
+/* Header and Navigation */
+.header {
+    position: fixed;
+    top: 46px; /* Exactly after the top header height */
+    left: 0;
+    width: 100%;
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
-    z-index: 1000;
+    z-index: 999; /* Lower than top header */
     transition: all 0.3s ease;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
@@ -226,6 +315,7 @@ body {
     overflow: hidden;
     display: block;
     visibility: visible;
+    margin-top: 129px; /* Top header (46px) + Main header (83px) with buffer */
 }
 
 .hero-slider {
@@ -280,7 +370,7 @@ body {
     z-index: 2;
     color: white;
     width: 100%;
-    padding-top: 80px;
+    padding-top: 0; /* Removed padding hack - hero section now properly positioned */
 }
 
 .hero-title {
@@ -1008,6 +1098,50 @@ img.error {
 }
 
 @media (max-width: 768px) {
+    .top-header {
+        padding: 8px 0;
+        font-size: 12px;
+        height: 42px; /* Smaller height for mobile */
+    }
+    
+    .top-header-content {
+        flex-direction: column;
+        gap: 6px;
+        text-align: center;
+    }
+    
+    .contact-info {
+        gap: 15px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .contact-item {
+        font-size: 11px;
+    }
+    
+    .social-links {
+        gap: 8px;
+    }
+    
+    .social-link {
+        width: 24px;
+        height: 24px;
+        font-size: 11px;
+    }
+    
+    .header {
+        top: 42px; /* Adjusted for mobile top header height */
+    }
+    
+    .hero-section {
+        margin-top: 110px; /* Mobile: Top header (42px) + Main header (~68px) */
+    }
+    
+    .hero-content {
+        padding-top: 0; /* Removed padding hack - using margin-top on hero-section */
+    }
+
     .hamburger {
         display: flex;
     }
