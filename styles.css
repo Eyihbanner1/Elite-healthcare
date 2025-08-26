@@ -1392,6 +1392,24 @@ body {
     animation: bounce 1s infinite;
 }
 
+.service-item .service-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.2rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.service-item .service-icon i {
+    font-size: 1.8rem;
+    color: white;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .service-item:hover .service-title,
 .service-item:hover .service-description {
     color: white;
