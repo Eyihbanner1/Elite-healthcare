@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Care Assessment Tool - Elite Healthcare</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Top Header -->
+    <div class="top-header">
+        <div class="container">
+            <div class="top-header-content">
+                <div class="top-header-left">
+                    <div class="contact-info">
+                        <span class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+1234567890">(555) 123-4567</a>
+                        </span>
+                        <span class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:info@elitehealthcare.com">info@elitehealthcare.com</a>
+                        </span>
+                        <span class="contact-item">
+                            <i class="fas fa-clock"></i>
+                            <span>24/7 Emergency Care Available</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="top-header-right">
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <h2 class="logo-text">Elite Healthcare</h2>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="index.html#services" class="nav-link">Services</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="index.html#residential">Residential Care</a></li>
+                            <li><a href="index.html#domiciliary">Domiciliary Care</a></li>
+                            <li><a href="index.html#supported">Supported Living</a></li>
+                            <li><a href="index.html#specialized">Specialized Care</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="index.html#about" class="nav-link">About Us</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="index.html#who-we-support">Who We Support</a></li>
+                            <li><a href="index.html#our-people">Our People</a></li>
+                            <li><a href="index.html#our-governance">Our Governance</a></li>
+                            <li><a href="index.html#our-training">Our Training</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="job-center.html" class="nav-link">Job Centre</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link active">Resources</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="knowledge-center.html">Knowledge Center</a></li>
+                            <li><a href="care-assessment.html" class="active">Care Assessment</a></li>
+                            <li><a href="#care-guides">Care Guides</a></li>
+                            <li><a href="#testimonials">Client Stories</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html#contact" class="nav-link">Contact</a>
+                    </li>
+                </ul>
+                <div class="nav-cta">
+                    <a href="tel:+1234567890" class="cta-phone">
+                        <i class="fas fa-phone"></i>
+                        24/7 Support
+                    </a>
+                    <button class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Assessment Hero -->
+    <section class="hero-section" id="home">
+        <div class="hero-slider">
+            <div class="hero-slide active">
+                <div class="hero-bg">
+                    <img src="https://images.pexels.com/photos/7551616/pexels-photo-7551616.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop" alt="Care Assessment" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMDgwIiB2aWV3Qm94PSIwIDAgMTkyMCAxMDgwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxOTIwIiBoZWlnaHQ9IjEwODAiIGZpbGw9IiMyZDZhNGYiLz48dGV4dCB4PSI5NjAiIHk9IjU0MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjQ4IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkNBUkUgQVNTRVNTTUVOVDwvdGV4dD48L3N2Zz4='">
+                </div>
+                <div class="hero-content">
+                    <div class="container">
+                        <h1 class="hero-title">
+                            <span class="title-line">Personalized</span>
+                            <span class="title-line">Care</span>
+                            <span class="title-line highlight">Assessment</span>
+                        </h1>
+                        <p class="hero-description">
+                            Take our comprehensive assessment to receive personalized care recommendations 
+                            tailored to your specific needs and circumstances.
+                        </p>
+                        <div class="hero-buttons">
+                            <button class="btn btn-primary" onclick="document.getElementById('assessment-tool').scrollIntoView({behavior: 'smooth'})">Start Assessment</button>
+                            <a href="knowledge-center.html" class="btn btn-secondary">Browse Resources</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Assessment Tool -->
+    <section class="assessment-tool" id="assessment-tool">
+        <div class="container">
+            <div class="tool-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                
+                <!-- Step 1: Basic Information -->
+                <div class="step-container" id="step1">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <h2 class="step-title">Basic Information</h2>
+                        <p class="step-description">Help us understand who we'll be caring for</p>
+                    </div>
+                    
+                    <div class="question-group">
+                        <label class="question-label">Who is this assessment for?</label>
+                        <div class="options-group">
+                            <div class="option-item" data-value="self">
+                                <input type="radio" name="recipient" value="self" class="option-radio">
+                                <div class="option-text">
+                                    <div class="option-title">Myself</div>
+                                    <div class="option-description">I'm looking for care services for myself</div>
+                                </div>
+                            </div>
+                            <div class="option-item" data-value="parent">
+                                <input type="radio" name="recipient" value="parent" class="option-radio">
+                                <div class="option-text">
+                                    <div class="option-title">My Parent/Family Member</div>
+                                    <div class="option-description">I'm seeking care for a family member</div>
+                                </div>
+                            </div>
+                            <div class="option-item" data-value="spouse">
+                                <input type="radio" name="recipient" value="spouse" class="option-radio">
+                                <div class="option-text">
+                                    <div class="option-title">My Spouse/Partner</div>
+                                    <div class="option-description">I'm looking for care for my partner</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-group">
+                        <label class="question-label">Age Range</label>
+                        <div class="options-group">
+                            <div class="option-item" data-value="under65">
+                                <input type="radio" name="age" value="under65" class="option-radio">
+                                <div class="option-text">
+                                    <div class="option-title">Under 65</div>
+                                </div>
+                            </div>
+                            <div class="option-item" data-value="65-75">
+                                <input type="radio" name="age" value="65-75" class="option-radio">
+                                <div class="option-text">
+                                    <div class="option-title">65-75 years</div>
+                                </div>
+                            </div>
+                            <div class="option-item" data-value="75-85">
+                                <input type="radio" name="age" value="75-85" class="option-radio">
+                                <div class="option-text">
+                                    <div class="option-title">75-85 years</div>
+                                </div>
+                            </div>
+                            <div class="option-item" data-value="over85">
+                                <input type="radio" name="age" value="over85" class="option-radio">
+                                <div class="option-text">
+                                    <div class="option-title">Over 85</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Care Needs -->
+                <div class="step-container" id="step2" style="display: none;">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <h2 class="step-title">Care Needs</h2>
+                        <p class="step-description">What type of assistance is needed?</p>
+                    </div>
+                    
+                    <div class="question-group">
+                        <label class="question-label">Primary care need</label>
+                        <div class="options-group">
+                            <div class="option-item" data-value="companionship">
+                                <input type="radio" name="careType" value="companionship" class="option-radio">
+                                <div class="option-text">
+                                    <div class="option-title">Companionship & Light Assistance</div>
+                                    <div class="option-description">Social interaction, meal preparation, light housekeeping</div>
+                                </div>
+                            </div>
+                            <div class="option-item" data-value="personal">
+                                <input type="radio" name="careType" value="personal" class="option-radio">
+                                <div class="option-text">
+                                    <div class="option-title">Personal Care</div>
+                                    <div class="option-description">Bathing, dressing, grooming, mobility assistance</div>
+                                </div>
+                            </div>
+                            <div class="option-item" data-value="medical">
+                                <input type="radio" name="careType" value="medical" class="option-radio">
+                                <div class="option-text">
+                                    <div class="option-title">Medical Care</div>
+                                    <div class="option-description">Medication management, wound care, medical monitoring</div>
+                                </div>
+                            </div>
+                            <div class="option-item" data-value="specialized">
+                                <input type="radio" name="careType" value="specialized" class="option-radio">
+                                <div class="option-text">
+                                    <div class="option-title">Specialized Care</div>
+                                    <div class="option-description">Dementia, disability support, complex medical needs</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Living Situation -->
+                <div class="step-container" id="step3" style="display: none;">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <h2 class="step-title">Living Situation</h2>
+                        <p class="step-description">Where will care be provided?</p>
+                    </div>
+                    
+                    <div class="question-group">
+                        <label class="question-label">Preferred care location</label>
+                        <div class="options-group">
+                            <div class="option-item" data-value="home">
+                                <input type="radio" name="location" value="home" class="option-radio">
+                                <div class="option-text">
+                                    <div class="option-title">Own Home</div>
+                                    <div class="option-description">Receive care in familiar surroundings</div>
+                                </div>
+                            </div>
+                            <div class="option-item" data-value="family">
+                                <input type="radio" name="location" value="family" class="option-radio">
+                                <div class="option-text">
+                                    <div class="option-title">Family Member's Home</div>
+                                    <div class="option-description">Living with or moving in with family</div>
+                                </div>
+                            </div>
+                            <div class="option-item" data-value="facility">
+                                <input type="radio" name="location" value="facility" class="option-radio">
+                                <div class="option-text">
+                                    <div class="option-title">Care Facility</div>
+                                    <div class="option-description">Assisted living or specialized care facility</div>
+                                </div>
+                            </div>
+                            <div class="option-item" data-value="unsure">
+                                <input type="radio" name="location" value="unsure" class="option-radio">
+                                <div class="option-text">
+                                    <div class="option-title">Not Sure</div>
+                                    <div class="option-description">Need guidance on the best option</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Results -->
+                <div class="step-container results-section" id="results">
+                    <div class="results-icon">
+                        <i class="fas fa-clipboard-check"></i>
+                    </div>
+                    <h2 class="results-title">Your Care Recommendations</h2>
+                    <p class="results-summary" id="resultsSummary">
+                        Based on your responses, we've identified the most suitable care options for your situation.
+                    </p>
+                    
+                    <div class="recommendations" id="recommendationsContent">
+                        <!-- Dynamic recommendations will be inserted here -->
+                    </div>
+                    
+                    <div class="cta-buttons">
+                        <a href="index.html#contact" class="btn btn-primary">Schedule Consultation</a>
+                        <a href="knowledge-center.html" class="btn btn-secondary">Download Care Guide</a>
+                    </div>
+                </div>
+
+                <div class="navigation-buttons">
+                    <button class="btn-nav btn-prev" id="prevBtn" onclick="previousStep()">Previous</button>
+                    <button class="btn-nav btn-next" id="nextBtn" onclick="nextStep()">Next</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">Elite Healthcare</h3>
+                    <p class="footer-description">
+                        Providing compassionate, professional healthcare services with dignity, 
+                        respect, and personalized care for every individual and family we serve.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html#residential-care">Residential Care</a></li>
+                        <li><a href="index.html#domiciliary-care">Domiciliary Care</a></li>
+                        <li><a href="index.html#supported-living">Supported Living</a></li>
+                        <li><a href="index.html#specialized-care">Specialized Care</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="index.html#our-team">Our Team</a></li>
+                        <li><a href="#careers">Careers</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="knowledge-center.html">Knowledge Center</a></li>
+                        <li><a href="care-assessment.html">Care Assessment</a></li>
+                        <li><a href="#care-guides">Care Guides</a></li>
+                        <li><a href="index.html#testimonials">Client Stories</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#privacy">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Elite Healthcare. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+        let currentStep = 1;
+        const totalSteps = 3;
+        let assessmentData = {};
+
+        function updateProgress() {
+            const progress = (currentStep - 1) / totalSteps * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+        }
+
+        function showStep(step) {
+            // Hide all steps
+            for (let i = 1; i <= totalSteps; i++) {
+                document.getElementById('step' + i).style.display = 'none';
+            }
+            document.getElementById('results').style.display = 'none';
+            
+            // Show current step or results
+            if (step <= totalSteps) {
+                document.getElementById('step' + step).style.display = 'block';
+            } else {
+                document.getElementById('results').style.display = 'block';
+                generateRecommendations();
+            }
+            
+            // Update navigation buttons
+            document.getElementById('prevBtn').style.display = step === 1 ? 'none' : 'block';
+            document.getElementById('nextBtn').textContent = step > totalSteps ? 'Start Over' : 'Next';
+            
+            updateProgress();
+        }
+
+        function nextStep() {
+            if (currentStep > totalSteps) {
+                // Restart assessment
+                currentStep = 1;
+                assessmentData = {};
+                showStep(currentStep);
+                return;
+            }
+            
+            // Validate current step
+            if (validateStep(currentStep)) {
+                currentStep++;
+                showStep(currentStep);
+            }
+        }
+
+        function previousStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                showStep(currentStep);
+            }
+        }
+
+        function validateStep(step) {
+            const stepElement = document.getElementById('step' + step);
+            const radioGroups = stepElement.querySelectorAll('input[type="radio"]');
+            const groupNames = [...new Set(Array.from(radioGroups).map(r => r.name))];
+            
+            for (let groupName of groupNames) {
+                const selectedRadio = stepElement.querySelector(`input[name="${groupName}"]:checked`);
+                if (!selectedRadio) {
+                    alert('Please select an option before continuing.');
+                    return false;
+                }
+                assessmentData[groupName] = selectedRadio.value;
+            }
+            return true;
+        }
+
+        function generateRecommendations() {
+            const { recipient, age, careType, location } = assessmentData;
+            let recommendations = [];
+            let summary = '';
+
+            // Generate personalized recommendations based on assessment
+            if (careType === 'companionship') {
+                summary = 'Light support services would be ideal for maintaining independence while ensuring safety and social connection.';
+                recommendations = [
+                    { icon: 'fas fa-users', text: 'Companion Care Services - Regular social visits and light assistance' },
+                    { icon: 'fas fa-utensils', text: 'Meal Preparation Support - Nutritious meal planning and preparation' },
+                    { icon: 'fas fa-broom', text: 'Light Housekeeping - Maintaining a clean, safe living environment' }
+                ];
+            } else if (careType === 'personal') {
+                summary = 'Personal care services will help maintain dignity and comfort while ensuring daily needs are met safely.';
+                recommendations = [
+                    { icon: 'fas fa-bath', text: 'Personal Hygiene Assistance - Bathing, grooming, and dressing support' },
+                    { icon: 'fas fa-wheelchair', text: 'Mobility Support - Safe transfers and movement assistance' },
+                    { icon: 'fas fa-pills', text: 'Medication Reminders - Ensuring medications are taken as prescribed' }
+                ];
+            } else if (careType === 'medical') {
+                summary = 'Professional medical care services are recommended to ensure health needs are properly managed.';
+                recommendations = [
+                    { icon: 'fas fa-user-nurse', text: 'Skilled Nursing Care - Licensed nurses for medical monitoring' },
+                    { icon: 'fas fa-heartbeat', text: 'Health Monitoring - Regular vital signs and health assessments' },
+                    { icon: 'fas fa-syringe', text: 'Medical Procedures - Wound care, injections, and treatments' }
+                ];
+            } else if (careType === 'specialized') {
+                summary = 'Specialized care programs designed for complex needs with specially trained caregivers.';
+                recommendations = [
+                    { icon: 'fas fa-brain', text: 'Memory Care Specialists - Trained in dementia and cognitive support' },
+                    { icon: 'fas fa-hand-holding-heart', text: '24/7 Supervision - Round-the-clock care and monitoring' },
+                    { icon: 'fas fa-puzzle-piece', text: 'Customized Care Plans - Tailored to specific medical conditions' }
+                ];
+            }
+
+            // Add location-specific recommendations
+            if (location === 'home') {
+                recommendations.push({ icon: 'fas fa-home', text: 'Home Safety Assessment - Ensuring environment is safe for care' });
+            } else if (location === 'facility') {
+                recommendations.push({ icon: 'fas fa-building', text: 'Facility Placement Assistance - Help finding the right care community' });
+            }
+
+            // Update the UI
+            document.getElementById('resultsSummary').textContent = summary;
+            
+            const recommendationsHTML = recommendations.map(rec => `
+                <div class="recommendation-item">
+                    <i class="${rec.icon}"></i>
+                    <span>${rec.text}</span>
+                </div>
+            `).join('');
+            
+            document.getElementById('recommendationsContent').innerHTML = `
+                <h3>Recommended Services:</h3>
+                ${recommendationsHTML}
+            `;
+        }
+
+        // Add click handlers for option items
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.option-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    const radio = this.querySelector('input[type="radio"]');
+                    radio.checked = true;
+                    
+                    // Remove selected class from siblings
+                    this.parentElement.querySelectorAll('.option-item').forEach(sibling => {
+                        sibling.classList.remove('selected');
+                    });
+                    
+                    // Add selected class to this item
+                    this.classList.add('selected');
+                });
+            });
+            
+            showStep(1);
+        });
+    </script>
+</body>
+</html>

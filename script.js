@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
         initImageErrorHandling();
         initAboutUsTabs();
         initDirectionalHover();
+        initJobApplicationForm();
         // Temporarily disable loading animation to test
         // initLoadingAnimation();
         console.log('All functions initialized successfully');
@@ -28,9 +29,15 @@ function initHeroSlider() {
     const prevBtn = document.querySelector('.prev-btn');
     const nextBtn = document.querySelector('.next-btn');
     
-    // Check if elements exist
-    if (!slides.length || !dots.length || !prevBtn || !nextBtn) {
-        console.warn('Hero slider elements not found');
+    // Check if this page has a hero slider (for pages like index.html)
+    if (!slides.length) {
+        // This page doesn't have a hero slider (like job-center.html), skip initialization
+        return;
+    }
+    
+    // Check if all required slider elements exist
+    if (!dots.length || !prevBtn || !nextBtn) {
+        console.warn('Hero slider elements incomplete - missing controls');
         return;
     }
     
@@ -881,3 +888,138 @@ function getHoverDirection(e, element) {
 
 // Initialize image error handling
 initImageErrorHandling();
+
+// Job Application Form Functionality
+function initJobApplicationForm() {
+    const form = document.querySelector('.job-application-form');
+    if (!form) return; // Exit if form doesn't exist on current page
+    
+    const steps = document.querySelectorAll('.form-step');
+    const nextBtn = document.querySelector('.next-step');
+    const prevBtn = document.querySelector('.prev-step');
+    const submitBtn = document.querySelector('.submit-application');
+    const progressSteps = document.querySelectorAll('.progress-step');
+    
+    let currentStep = 0;
+    
+    // Function to show specific step
+    function showStep(stepIndex) {
+        // Hide all steps
+        steps.forEach(step => step.classList.remove('active'));
+        progressSteps.forEach(step => step.classList.remove('active'));
+        
+        // Show current step
+        if (steps[stepIndex]) {
+            steps[stepIndex].classList.add('active');
+        }
+        if (progressSteps[stepIndex]) {
+            progressSteps[stepIndex].classList.add('active');
+        }
+        
+        // Update button visibility
+        prevBtn.style.display = stepIndex > 0 ? 'inline-block' : 'none';
+        nextBtn.style.display = stepIndex < steps.length - 1 ? 'inline-block' : 'none';
+        submitBtn.style.display = stepIndex === steps.length - 1 ? 'inline-block' : 'none';
+    }
+    
+    // Function to validate current step
+    function validateStep(stepIndex) {
+        const currentStepElement = steps[stepIndex];
+        const requiredFields = currentStepElement.querySelectorAll('[required]');
+        let isValid = true;
+        
+        requiredFields.forEach(field => {
+            if (field.type === 'checkbox') {
+                const checkboxGroup = currentStepElement.querySelectorAll(`input[name="${field.name}"]`);
+                const isChecked = Array.from(checkboxGroup).some(cb => cb.checked);
+                if (!isChecked && field.hasAttribute('required')) {
+                    isValid = false;
+                    field.style.borderColor = '#ff6b6b';
+                }
+            } else if (!field.value.trim()) {
+                isValid = false;
+                field.style.borderColor = '#ff6b6b';
+            } else {
+                field.style.borderColor = '';
+            }
+        });
+        
+        return isValid;
+    }
+    
+    // Next step functionality
+    if (nextBtn) {
+        nextBtn.addEventListener('click', function() {
+            if (validateStep(currentStep)) {
+                if (currentStep < steps.length - 1) {
+                    currentStep++;
+                    showStep(currentStep);
+                }
+            } else {
+                alert('Please fill in all required fields before proceeding.');
+            }
+        });
+    }
+    
+    // Previous step functionality
+    if (prevBtn) {
+        prevBtn.addEventListener('click', function() {
+            if (currentStep > 0) {
+                currentStep--;
+                showStep(currentStep);
+            }
+        });
+    }
+    
+    // Form submission
+    if (submitBtn) {
+        submitBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            if (validateStep(currentStep)) {
+                // Collect form data
+                const formData = new FormData(form);
+                
+                // Show success message
+                alert('Thank you for your application! We will review your submission and contact you within 5-7 business days.');
+                
+                // Reset form (optional)
+                form.reset();
+                currentStep = 0;
+                showStep(currentStep);
+                
+                // Scroll to top of form
+                form.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                alert('Please complete all required fields.');
+            }
+        });
+    }
+    
+    // File upload validation
+    const fileInput = document.querySelector('#resume');
+    if (fileInput) {
+        fileInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const maxSize = 5 * 1024 * 1024; // 5MB
+                const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+                
+                if (file.size > maxSize) {
+                    alert('File size must be less than 5MB');
+                    e.target.value = '';
+                    return;
+                }
+                
+                if (!allowedTypes.includes(file.type)) {
+                    alert('Please upload a PDF, DOC, or DOCX file');
+                    e.target.value = '';
+                    return;
+                }
+            }
+        });
+    }
+    
+    // Initialize first step
+    showStep(0);
+}
