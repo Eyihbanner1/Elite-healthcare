@@ -762,23 +762,24 @@ function initAboutUsTabs() {
     console.log('About Us tab navigation initialized successfully');
 }
 
-// Directional Hover Effect for Feature Cards
+// Directional Hover Effect for All Interactive Cards (Matching Why Choose Elite Healthcare Style)
 function initDirectionalHover() {
-    const cards = document.querySelectorAll('.why-choose-card');
+    // Select all interactive cards including tab navigation cards
+    const cards = document.querySelectorAll('.why-choose-card, .highlight-item, .people-card, .governance-card, .training-step');
     
     cards.forEach(card => {
         card.addEventListener('mouseenter', function(e) {
             const direction = getHoverDirection(e, this);
             
-            // Remove all direction classes
+            // Remove all previous direction classes
             this.classList.remove('hover-left', 'hover-right', 'hover-top', 'hover-bottom');
             
-            // Add the appropriate direction class
+            // Add the appropriate direction class for entry (matching why-choose-card behavior)
             this.classList.add(`hover-${direction}`);
         });
         
-        card.addEventListener('mouseleave', function() {
-            // Remove all direction classes on leave
+        card.addEventListener('mouseleave', function(e) {
+            // Remove hover classes when mouse leaves (simple cleanup)
             this.classList.remove('hover-left', 'hover-right', 'hover-top', 'hover-bottom');
         });
     });
