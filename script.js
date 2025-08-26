@@ -249,26 +249,92 @@ function initMobileMenu() {
 
 // Smooth Scrolling for Navigation Links
 function initSmoothScrolling() {
+    // Get all navigation links including dropdown menu items
     const navLinks = document.querySelectorAll('a[href^="#"]');
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
     
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             const href = link.getAttribute('href');
             
             // Skip if it's just '#'
-            if (href === '#') return;
+            if (href === '#') {
+                e.preventDefault();
+                return;
+            }
             
             e.preventDefault();
             
             const target = document.querySelector(href);
             if (target) {
-                const headerHeight = document.querySelector('.header').offsetHeight;
-                const targetPosition = target.offsetTop - headerHeight;
+                const header = document.querySelector('.header');
+                const headerHeight = header ? header.offsetHeight : 80;
+                const targetPosition = target.offsetTop - headerHeight - 20; // Extra 20px offset
                 
+                // Close mobile menu if it's open
+                if (navMenu && navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    if (hamburger) {
+                        hamburger.classList.remove('active');
+                    }
+                }
+                
+                // Close any open dropdown menus
+                const dropdownMenus = document.querySelectorAll('.dropdown-menu');
+                dropdownMenus.forEach(dropdown => {
+                    dropdown.style.display = 'none';
+                });
+                
+                // Smooth scroll to target
                 window.scrollTo({
                     top: targetPosition,
                     behavior: 'smooth'
                 });
+                
+                // Add a brief highlight effect to the target section
+                target.style.transition = 'background-color 0.3s ease';
+                const originalBg = getComputedStyle(target).backgroundColor;
+                target.style.backgroundColor = 'rgba(44, 90, 160, 0.1)';
+                setTimeout(() => {
+                    target.style.backgroundColor = originalBg;
+                    setTimeout(() => {
+                        target.style.transition = '';
+                    }, 300);
+                }, 300);
+            }
+        });
+    });
+    
+    // Handle dropdown menu interactions
+    const dropdownItems = document.querySelectorAll('.nav-item.dropdown');
+    dropdownItems.forEach(dropdown => {
+        const dropdownMenu = dropdown.querySelector('.dropdown-menu');
+        
+        dropdown.addEventListener('mouseenter', () => {
+            if (window.innerWidth > 768) { // Only on desktop
+                dropdownMenu.style.display = 'block';
+            }
+        });
+        
+        dropdown.addEventListener('mouseleave', () => {
+            if (window.innerWidth > 768) { // Only on desktop
+                dropdownMenu.style.display = 'none';
+            }
+        });
+        
+        // Handle click for mobile
+        const dropdownLink = dropdown.querySelector('.nav-link');
+        dropdownLink.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                const isVisible = dropdownMenu.style.display === 'block';
+                // Close all other dropdowns
+                document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                    menu.style.display = 'none';
+                });
+                // Toggle current dropdown
+                dropdownMenu.style.display = isVisible ? 'none' : 'block';
             }
         });
     });
