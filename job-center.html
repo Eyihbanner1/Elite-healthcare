@@ -52,45 +52,16 @@
     <!-- Navigation -->
     <header class="header">
         <nav class="navbar">
-            <div class="nav-container">
-                <div class="nav-logo">
-                    <h2 class="logo-text">Elite Healthcare</h2>
+            <div class="container">
+                <div class="navbar-brand">
+                    <h2>Elite Healthcare</h2>
                 </div>
-                <ul class="nav-menu">
-                    <li class="nav-item">
-                        <a href="index.html" class="nav-link">Home</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a href="index.html#services" class="nav-link">Services</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="index.html#residential">Residential Care</a></li>
-                            <li><a href="index.html#domiciliary">Domiciliary Care</a></li>
-                            <li><a href="index.html#supported">Supported Living</a></li>
-                            <li><a href="index.html#specialized">Specialized Care</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a href="index.html#about" class="nav-link">About Us</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="index.html#who-we-support">Who We Support</a></li>
-                            <li><a href="index.html#our-people">Our People</a></li>
-                            <li><a href="index.html#our-governance">Our Governance</a></li>
-                            <li><a href="index.html#our-training">Our Training</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item active">
-                        <a href="job-center.html" class="nav-link">Job Centre</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="index.html#contact" class="nav-link">Contact</a>
-                    </li>
-                </ul>
                 <div class="nav-cta">
                     <a href="tel:+1234567890" class="cta-phone">
-                        <i class="fas fa-phone"></i>
-                        24/7 Support
+                        <i class="fas fa-phone-alt"></i>
+                        <span>24/7 Support</span>
                     </a>
-                    <button class="hamburger">
+                    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
                         <span></span>
                         <span></span>
                         <span></span>
@@ -101,23 +72,27 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="page-hero gradient-hero">
-        <div class="page-hero-bg">
-            <div class="page-hero-overlay"></div>
-        </div>
-        <div class="page-hero-content">
-            <div class="container">
-                <h1 class="page-hero-title">Join Our Team</h1>
-                <p class="page-hero-description">
-                    Build a rewarding career in healthcare with Elite Healthcare. We offer competitive benefits, professional growth opportunities, and the chance to make a real difference in people's lives.
-                </p>
-                <div class="page-hero-buttons">
-                    <button class="btn btn-primary">View Open Positions</button>
-                    <a href="#application-form" class="btn btn-secondary">Apply Now</a>
+    <div class="hero-slider">
+        <div class="hero-slide active">
+            <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&h=600&q=80" alt="Join Our Team" class="hero-image">
+            <div class="hero-content">
+                <div class="container">
+                    <h1 class="hero-title">
+                        <span class="hero-word">Join</span>
+                        <span class="hero-word">Our</span>
+                        <span class="hero-word">Team</span>
+                    </h1>
+                    <p class="hero-description">
+                        Build a rewarding career in healthcare with Elite Healthcare. We offer competitive benefits, professional growth opportunities, and the chance to make a real difference in people's lives.
+                    </p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary">View Open Positions</button>
+                        <a href="#application-form" class="btn btn-secondary">Apply Now</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
     <!-- Job Categories Section -->
     <section class="services-section">
