@@ -222,8 +222,28 @@ function initMobileMenu() {
 
     hamburger.addEventListener('click', toggleMenu);
 
-    // Close menu when clicking on nav links
+    // Close menu when clicking on nav links (but NOT dropdown parents on mobile)
     navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            // Check if this is a dropdown parent link on mobile
+            const isDropdownParent = link.parentElement.classList.contains('dropdown');
+            const isMobile = window.innerWidth <= 768;
+            
+            // Only close menu if it's NOT a dropdown parent on mobile
+            if (!isDropdownParent || !isMobile) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                const spans = hamburger.querySelectorAll('span');
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        });
+    });
+
+    // Close menu when clicking on dropdown submenu items
+    const dropdownLinks = document.querySelectorAll('.dropdown-menu a');
+    dropdownLinks.forEach(link => {
         link.addEventListener('click', () => {
             hamburger.classList.remove('active');
             navMenu.classList.remove('active');
@@ -262,6 +282,15 @@ function initSmoothScrolling() {
             if (href === '#') {
                 e.preventDefault();
                 return;
+            }
+            
+            // Check if this is a dropdown parent link on mobile
+            const isDropdownParent = link.parentElement.classList.contains('dropdown');
+            const isMobile = window.innerWidth <= 768;
+            
+            // Don't handle smooth scrolling for dropdown parents on mobile
+            if (isDropdownParent && isMobile) {
+                return; // Let the dropdown handler manage this
             }
             
             e.preventDefault();
@@ -328,13 +357,26 @@ function initSmoothScrolling() {
         dropdownLink.addEventListener('click', (e) => {
             if (window.innerWidth <= 768) {
                 e.preventDefault();
+                e.stopPropagation(); // Prevent event bubbling
+                
                 const isVisible = dropdownMenu.style.display === 'block';
+                
                 // Close all other dropdowns
                 document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                    menu.style.display = 'none';
+                    if (menu !== dropdownMenu) {
+                        menu.style.display = 'none';
+                        menu.style.maxHeight = '0';
+                    }
                 });
+                
                 // Toggle current dropdown
-                dropdownMenu.style.display = isVisible ? 'none' : 'block';
+                if (isVisible) {
+                    dropdownMenu.style.display = 'none';
+                    dropdownMenu.style.maxHeight = '0';
+                } else {
+                    dropdownMenu.style.display = 'block';
+                    dropdownMenu.style.maxHeight = '300px';
+                }
             }
         });
     });
