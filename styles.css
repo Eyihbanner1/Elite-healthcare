@@ -206,10 +206,10 @@ body {
     .nav-menu {
         display: flex;
         position: fixed;
-        top: 80px; /* Position below header */
+        top: calc(var(--top-header-height) + 70px); /* Position below both headers */
         left: 0;
         width: 100%;
-        height: calc(100vh - 80px);
+        height: calc(100vh - var(--top-header-height) - 70px);
         background: white;
         flex-direction: column;
         align-items: center;
@@ -2917,18 +2917,33 @@ img.error {
 @media (max-width: 768px) {
     body {
         --top-header-height: 42px;
+        padding-top: var(--top-header-height);
     }
 
     .top-header {
         padding: 8px 0;
         font-size: 12px;
         height: var(--top-header-height); /* Use CSS variable */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1001; /* Higher than main header */
     }
     
     .top-header-content {
         flex-direction: column;
         gap: 6px;
         text-align: center;
+    }
+    
+    .header {
+        top: var(--top-header-height); /* Position main header below top header */
+        position: sticky;
+    }
+    
+    .navbar {
+        padding: 0.75rem 0; /* Reduce padding on mobile */
     }
     
     .contact-info {
@@ -2953,6 +2968,19 @@ img.error {
 
     .hamburger {
         display: flex;
+    }
+    
+    .nav-container {
+        padding: 0 15px; /* Reduce horizontal padding on mobile */
+    }
+    
+    .nav-cta {
+        gap: 10px; /* Reduce gap on mobile */
+    }
+    
+    .cta-phone {
+        font-size: 0.875rem; /* Smaller font size on mobile */
+        padding: 8px 16px; /* Adjust padding */
     }
     
     .hero-title {
