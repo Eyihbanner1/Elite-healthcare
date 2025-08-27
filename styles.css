@@ -203,13 +203,37 @@ body {
 
 /* Hide desktop menu on mobile */
 @media (max-width: 768px) {
+    /* Hide desktop CTA phone button on mobile */
+    .cta-phone {
+        display: none;
+    }
+    
+    /* Show mobile support item in hamburger menu */
+    .mobile-support {
+        display: block !important;
+    }
+    
+    /* Resize logo for mobile */
+    .logo-text {
+        font-size: 1.5rem; /* Smaller than desktop 2rem */
+    }
+    
+    /* Adjust nav container for better mobile layout */
+    .nav-container {
+        padding: 0 15px; /* Reduce horizontal padding */
+    }
+    
+    .navbar {
+        padding: 0.8rem 0; /* Reduce top/bottom padding */
+    }
+    
     .nav-menu {
         display: flex;
         position: fixed;
-        top: 80px; /* Position below header */
+        top: 60px; /* Adjust for smaller navbar height */
         left: 0;
         width: 100%;
-        height: calc(100vh - 80px);
+        height: calc(100vh - 60px);
         background: white;
         flex-direction: column;
         align-items: center;
@@ -546,6 +570,33 @@ body {
 .cta-phone:hover {
     transform: translateY(-3px);
     box-shadow: 0 10px 25px rgba(44, 90, 160, 0.3);
+}
+
+/* Mobile Support Item - Hidden on Desktop */
+.mobile-support {
+    display: none !important;
+}
+
+.cta-phone-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: linear-gradient(45deg, #2c5aa0, #3498db);
+    color: white !important;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    margin: 1rem;
+    padding: 1rem 2rem;
+}
+
+.cta-phone-mobile:hover {
+    background: linear-gradient(45deg, #1e3f73, #2980b9);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(44, 90, 160, 0.3);
+    color: white !important;
 }
 
 /* Hamburger Menu */
@@ -3006,11 +3057,24 @@ img.error {
     
     /* Make sure navbar doesn't overlap */
     .navbar {
-        padding: 0.8rem 0;
+        padding: 0.6rem 0; /* Even smaller padding for very small screens */
     }
     
     .logo-text {
-        font-size: 1.5rem;
+        font-size: 1.25rem; /* Even smaller logo on very small screens */
+    }
+    
+    /* Adjust mobile menu positioning */
+    .nav-menu {
+        top: 50px; /* Adjust for smaller navbar */
+        height: calc(100vh - 50px);
+    }
+    
+    /* Make mobile support button more prominent on very small screens */
+    .cta-phone-mobile {
+        font-size: 1.1rem;
+        padding: 1.2rem 2rem;
+        margin: 1.5rem;
     }
 }
 
