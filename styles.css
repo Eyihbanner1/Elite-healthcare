@@ -331,9 +331,9 @@ body {
         color: #2c5aa0 !important;
         transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         border-radius: 8px;
-        margin: 0 0.75rem;
+        margin: 0;
         text-align: center;
-        width: calc(100% - 1.5rem);
+        width: 100%;
         position: relative;
         overflow: hidden;
     }
@@ -367,12 +367,12 @@ body {
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
         border-radius: 8px;
-        margin: 0.25rem 0.75rem;
+        margin: 0;
         padding: 0;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         border: 1px solid rgba(44, 90, 160, 0.2);
         display: none;
-        width: calc(100% - 1.5rem);
+        width: 100%;
         opacity: 0;
         transform: translateY(-10px) scale(0.95);
         transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -546,7 +546,7 @@ body {
 
 .dropdown-menu {
     position: absolute;
-    top: calc(100% + 10px);
+    top: 100%;
     left: 0;
     background: white;
     min-width: 220px;
