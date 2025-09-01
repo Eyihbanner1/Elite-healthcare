@@ -295,42 +295,87 @@ function initSmoothScrolling() {
             
             e.preventDefault();
             
-            const target = document.querySelector(href);
-            if (target) {
-                const header = document.querySelector('.header');
-                const headerHeight = header ? header.offsetHeight : 80;
-                const targetPosition = target.offsetTop - headerHeight - 20; // Extra 20px offset
-                
-                // Close mobile menu if it's open
-                if (navMenu && navMenu.classList.contains('active')) {
-                    navMenu.classList.remove('active');
-                    if (hamburger) {
-                        hamburger.classList.remove('active');
+            // Special handling for About Us dropdown items
+            const aboutUsTabIds = ['who-we-support', 'our-people', 'our-governance', 'our-training'];
+            const targetId = href.substring(1); // Remove the # from href
+            
+            console.log('Navigation link clicked:', href, 'targetId:', targetId);
+            
+            if (aboutUsTabIds.includes(targetId)) {
+                console.log('This is an About Us tab link, handling specially');
+                // This is an About Us tab link
+                const aboutSection = document.querySelector('#about');
+                if (aboutSection) {
+                    const header = document.querySelector('.header');
+                    const headerHeight = header ? header.offsetHeight : 80;
+                    const targetPosition = aboutSection.offsetTop - headerHeight - 20;
+                    
+                    // Close mobile menu if it's open
+                    if (navMenu && navMenu.classList.contains('active')) {
+                        navMenu.classList.remove('active');
+                        if (hamburger) {
+                            hamburger.classList.remove('active');
+                        }
                     }
-                }
-                
-                // Close any open dropdown menus
-                const dropdownMenus = document.querySelectorAll('.dropdown-menu');
-                dropdownMenus.forEach(dropdown => {
-                    dropdown.style.display = 'none';
-                });
-                
-                // Smooth scroll to target
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-                
-                // Add a brief highlight effect to the target section
-                target.style.transition = 'background-color 0.3s ease';
-                const originalBg = getComputedStyle(target).backgroundColor;
-                target.style.backgroundColor = 'rgba(44, 90, 160, 0.1)';
-                setTimeout(() => {
-                    target.style.backgroundColor = originalBg;
+                    
+                    // Close any open dropdown menus
+                    const dropdownMenus = document.querySelectorAll('.dropdown-menu');
+                    dropdownMenus.forEach(dropdown => {
+                        dropdown.style.display = 'none';
+                    });
+                    
+                    // Smooth scroll to About Us section
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Activate the corresponding tab after scroll
                     setTimeout(() => {
-                        target.style.transition = '';
+                        showAboutUsTab(targetId);
+                    }, 500); // Wait for scroll to complete
+                } else {
+                    console.error('About section not found');
+                }
+            } else {
+                // Regular section navigation
+                const target = document.querySelector(href);
+                if (target) {
+                    const header = document.querySelector('.header');
+                    const headerHeight = header ? header.offsetHeight : 80;
+                    const targetPosition = target.offsetTop - headerHeight - 20; // Extra 20px offset
+                    
+                    // Close mobile menu if it's open
+                    if (navMenu && navMenu.classList.contains('active')) {
+                        navMenu.classList.remove('active');
+                        if (hamburger) {
+                            hamburger.classList.remove('active');
+                        }
+                    }
+                    
+                    // Close any open dropdown menus
+                    const dropdownMenus = document.querySelectorAll('.dropdown-menu');
+                    dropdownMenus.forEach(dropdown => {
+                        dropdown.style.display = 'none';
+                    });
+                    
+                    // Smooth scroll to target
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Add a brief highlight effect to the target section
+                    target.style.transition = 'background-color 0.3s ease';
+                    const originalBg = getComputedStyle(target).backgroundColor;
+                    target.style.backgroundColor = 'rgba(44, 90, 160, 0.1)';
+                    setTimeout(() => {
+                        target.style.backgroundColor = originalBg;
+                        setTimeout(() => {
+                            target.style.transition = '';
+                        }, 300);
                     }, 300);
-                }, 300);
+                }
             }
         });
     });
@@ -727,6 +772,34 @@ function initImageErrorHandling() {
 }
 
 // About Us Tab Navigation Functionality
+// Global function to show About Us tabs (accessible from other functions)
+function showAboutUsTab(tabName) {
+    console.log('showAboutUsTab called with tabName:', tabName);
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.about-tab-content');
+    
+    if (!tabButtons.length || !tabContents.length) {
+        console.warn('About Us tab elements not found');
+        return;
+    }
+    
+    // Remove active class from all tabs and content
+    tabButtons.forEach(btn => btn.classList.remove('active'));
+    tabContents.forEach(content => content.classList.remove('active'));
+    
+    // Add active class to clicked tab and corresponding content
+    const activeTab = document.querySelector(`[data-tab="${tabName}"]`);
+    const activeContent = document.querySelector(`.about-tab-content[data-tab="${tabName}"]`);
+    
+    if (activeTab && activeContent) {
+        activeTab.classList.add('active');
+        activeContent.classList.add('active');
+        console.log('Successfully activated tab:', tabName);
+    } else {
+        console.error('Could not find tab elements for:', tabName);
+    }
+}
+
 function initAboutUsTabs() {
     const tabButtons = document.querySelectorAll('.tab-btn');
     const tabContents = document.querySelectorAll('.about-tab-content');
@@ -737,38 +810,13 @@ function initAboutUsTabs() {
         return;
     }
     
-    // Function to show specific tab
-    function showTab(tabName) {
-        // Remove active class from all tabs and content
-        tabButtons.forEach(btn => btn.classList.remove('active'));
-        tabContents.forEach(content => content.classList.remove('active'));
-        
-        // Add active class to clicked tab and corresponding content
-        const activeTab = document.querySelector(`[data-tab="${tabName}"]`);
-        const activeContent = document.querySelector(`.about-tab-content[data-tab="${tabName}"]`);
-        
-        if (activeTab && activeContent) {
-            activeTab.classList.add('active');
-            activeContent.classList.add('active');
-        }
-        
-        // Smooth scroll to top of about section on tab change
-        const aboutSection = document.querySelector('.about-us-section');
-        if (aboutSection) {
-            aboutSection.scrollIntoView({ 
-                behavior: 'smooth', 
-                block: 'start' 
-            });
-        }
-    }
-    
     // Add click event listeners to tab buttons
     tabButtons.forEach(button => {
         button.addEventListener('click', function(e) {
             e.preventDefault();
             const tabName = this.getAttribute('data-tab');
             if (tabName) {
-                showTab(tabName);
+                showAboutUsTab(tabName);
             }
         });
     });
@@ -796,7 +844,7 @@ function initAboutUsTabs() {
             const prevTab = tabs[prevIndex];
             if (prevTab) {
                 const tabName = prevTab.getAttribute('data-tab');
-                showTab(tabName);
+                showAboutUsTab(tabName);
             }
         } else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
             e.preventDefault();
@@ -804,7 +852,7 @@ function initAboutUsTabs() {
             const nextTab = tabs[nextIndex];
             if (nextTab) {
                 const tabName = nextTab.getAttribute('data-tab');
-                showTab(tabName);
+                showAboutUsTab(tabName);
             }
         }
     });
@@ -828,7 +876,7 @@ function initAboutUsTabs() {
             
             if (nextTab) {
                 const tabName = nextTab.getAttribute('data-tab');
-                showTab(tabName);
+                showAboutUsTab(tabName);
             }
         }, AUTO_TAB_DELAY);
     }

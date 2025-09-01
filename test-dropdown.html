@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test - Elite Healthcare Dropdown Navigation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        .test-result {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Elite Healthcare - Dropdown Navigation Test</h1>
+    <p>This page tests the dropdown navigation functionality.</p>
+    
+    <div id="test-results">
+        <h2>Test Results:</h2>
+    </div>
+    
+    <div>
+        <h3>Manual Tests:</h3>
+        <button onclick="openMainSite()">Open Main Site</button>
+        <button onclick="testDropdownLinks()">Test Dropdown Navigation</button>
+        <button onclick="checkJSErrors()">Check for JavaScript Errors</button>
+    </div>
+    
+    <div id="manual-test-info" class="test-result info">
+        <h4>How to test manually:</h4>
+        <ol>
+            <li>Click "Open Main Site" to open the main website</li>
+            <li>Hover over "About Us" in the navigation menu</li>
+            <li>Click on any of the dropdown items (Who We Support, Our People, Our Governance, Our Training)</li>
+            <li>Verify that:
+                <ul>
+                    <li>The page scrolls to the About Us section</li>
+                    <li>The correct tab is activated</li>
+                    <li>The dropdown menu closes after clicking</li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+
+    <script>
+        function addTestResult(message, type = 'info') {
+            const resultsDiv = document.getElementById('test-results');
+            const resultDiv = document.createElement('div');
+            resultDiv.className = `test-result ${type}`;
+            resultDiv.innerHTML = message;
+            resultsDiv.appendChild(resultDiv);
+        }
+
+        function openMainSite() {
+            const mainSiteUrl = 'index.html';
+            window.open(mainSiteUrl, '_blank');
+            addTestResult('✓ Main site opened in new tab', 'success');
+        }
+
+        function testDropdownLinks() {
+            // Test if we can access the main site's functions
+            const dropdownLinks = [
+                { id: 'who-we-support', name: 'Who We Support' },
+                { id: 'our-people', name: 'Our People' },
+                { id: 'our-governance', name: 'Our Governance' },
+                { id: 'our-training', name: 'Our Training' }
+            ];
+            
+            let testInfo = '<h4>Dropdown Links to Test:</h4><ul>';
+            dropdownLinks.forEach(link => {
+                testInfo += `<li><strong>${link.name}</strong> - Should navigate to #${link.id}</li>`;
+            });
+            testInfo += '</ul>';
+            
+            addTestResult(testInfo, 'info');
+        }
+
+        function checkJSErrors() {
+            // Simple check for common JavaScript issues
+            const checks = [
+                'showAboutUsTab function should be defined',
+                'initSmoothScrolling function should be defined',
+                'initAboutUsTabs function should be defined'
+            ];
+            
+            let checkInfo = '<h4>JavaScript Function Checks:</h4><ul>';
+            checks.forEach(check => {
+                checkInfo += `<li>${check}</li>`;
+            });
+            checkInfo += '</ul>';
+            
+            addTestResult(checkInfo, 'info');
+            addTestResult('Note: These functions are defined in the main site\'s script.js file. Open the main site to test their functionality.', 'info');
+        }
+
+        // Initial load message
+        window.addEventListener('DOMContentLoaded', function() {
+            addTestResult('Test page loaded successfully. Ready to test dropdown navigation!', 'success');
+        });
+    </script>
+</body>
+</html>
